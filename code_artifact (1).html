@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة التسجيل في مسابقة المساجلات الشعرية - مدرسة ابن خلدون العلمية</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for Arabic Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emeraldCustom: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        goldCustom: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        amiri: ['Amiri', 'serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8fafc;
+            background-image: radial-gradient(#15803d15 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .font-amiri {
+            font-family: 'Amiri', serif;
+        }
+        .bg-pattern {
+            background-color: #064e3b;
+            background-image: radial-gradient(rgba(217, 119, 6, 0.25) 1px, transparent 0);
+            background-size: 16px 16px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Banner -->
+    <header class="bg-pattern text-white shadow-xl border-b-4 border-amber-500 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 py-8 relative z-10 text-center">
+            <!-- Badge / Logo Placeholder -->
+            <div class="inline-flex items-center justify-center p-3 bg-white/10 rounded-full mb-3 backdrop-blur-md border border-amber-400/30 shadow-inner">
+                <i class="fa-solid fa-feather-pointed text-3xl text-amber-400"></i>
+            </div>
+            
+            <h2 class="text-amber-300 font-bold text-lg md:text-xl tracking-wide mb-1">مدرسة ابن خلدون العلمية</h2>
+            <p class="text-emerald-100 text-sm font-medium mb-4">قسم اللغة العربية</p>
+            
+            <h1 class="font-amiri text-3xl md:text-5xl font-bold text-white mb-3 drop-shadow-md">
+                مسابقة المساجلات الشعرية 📜
+            </h1>
+
+            <p class="font-amiri italic text-amber-200 text-lg md:text-xl max-w-2xl mx-auto mt-2 leading-relaxed">
+                «بِالشِّعْرِ نَحْيَا وَبِالبَلاَغَةِ نَرْتَقِي.. أًطْرِبْنَا بِجَمَالِ صَوْتِكِ وَبَلاَغَةِ لِسَانِكِ»
+            </p>
+
+            <!-- Supervisor Info Pills -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mt-6 text-xs md:text-sm">
+                <span class="bg-emerald-950/80 text-amber-300 px-4 py-1.5 rounded-full border border-amber-400/30 flex items-center gap-2">
+                    <i class="fa-solid fa-user-tie"></i> إشراف: أ. عبد اللطيف (رئيس القسم)
+                </span>
+                <span class="bg-emerald-950/80 text-amber-300 px-4 py-1.5 rounded-full border border-amber-400/30 flex items-center gap-2">
+                    <i class="fa-solid fa-chalkboard-user"></i> مسؤولة المسابقة: أ. أسماء عطية أحمد
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8 w-full flex-grow">
+        <!-- Navigation Buttons -->
+        <div class="flex flex-wrap justify-center gap-2 mb-8 border-b border-slate-200 pb-4">
+            <button onclick="switchTab('register')" id="tab-register" class="tab-btn active px-5 py-2.5 rounded-xl font-bold transition-all duration-200 bg-emerald-700 text-white shadow-md flex items-center gap-2">
+                <i class="fa-solid fa-pen-nib"></i> استمارة التسجيل
+            </button>
+            <button onclick="switchTab('info')" id="tab-info" class="tab-btn px-5 py-2.5 rounded-xl font-bold transition-all duration-200 bg-white text-slate-700 hover:bg-slate-100 flex items-center gap-2 shadow-sm border border-slate-200">
+                <i class="fa-solid fa-bullseye"></i> أهداف المسابقة
+            </button>
+            <button onclick="switchTab('contacts')" id="tab-contacts" class="tab-btn px-5 py-2.5 rounded-xl font-bold transition-all duration-200 bg-white text-slate-700 hover:bg-slate-100 flex items-center gap-2 shadow-sm border border-slate-200">
+                <i class="fa-solid fa-address-book"></i> التواصل والإنضمام
+            </button>
+        </div>
+
+        <!-- TAB 1: REGISTRATION FORM -->
+        <section id="content-register" class="tab-content transition-all duration-300">
+            <div class="glass-card rounded-2xl p-6 md:p-8 shadow-xl border border-slate-100">
+                <div class="border-b border-slate-200 pb-4 mb-6 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-amiri text-2xl font-bold text-emerald-900">تسجيل مشارك جديد</h3>
+                        <p class="text-xs text-slate-500 mt-1">يرجى ملء كافة البيانات بدقة للانضمام للفرسان المشاركين</p>
+                    </div>
+                    <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-lg border border-emerald-200">
+                        مفتوح الآن
+                    </span>
+                </div>
+
+                <form id="registrationForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <!-- Student Name -->
+                    <div>
+                        <label for="studentName" class="block text-sm font-bold text-slate-700 mb-2">
+                            اسم الطالب / الطالبة (الرباعي) <span class="text-rose-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <i class="fa-solid fa-user absolute right-3.5 top-3.5 text-slate-400"></i>
+                            <input type="text" id="studentName" required placeholder="مثال: أحمد محمد علي العتيبي"
+                                class="w-full pr-10 pl-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none transition bg-white/80">
+                        </div>
+                    </div>
+
+                    <!-- Grade and Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="studentGrade" class="block text-sm font-bold text-slate-700 mb-2">
+                                المرحلة الدراسية <span class="text-rose-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-graduation-cap absolute right-3.5 top-3.5 text-slate-400"></i>
+                                <select id="studentGrade" required class="w-full pr-10 pl-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none transition bg-white">
+                                    <option value="">اختر المرحلة</option>
+                                    <option value="المرحلة الابتدائية العليا">المرحلة الابتدائية العليا</option>
+                                    <option value="المرحلة المتوسطة">المرحلة المتوسطة</option>
+                                    <option value="المرحلة الثانوية">المرحلة الثانوية</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="classRoom" class="block text-sm font-bold text-slate-700 mb-2">
+                                الصف والراوفد <span class="text-rose-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-school absolute right-3.5 top-3.5 text-slate-400"></i>
+                                <input type="text" id="classRoom" required placeholder="مثال: ثاني ثانوي / (أ)"
+                                    class="w-full pr-10 pl-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none transition bg-white/80">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div>
+                        <label for="phoneNumber" class="block text-sm font-bold text-slate-700 mb-2">
+                            رقم هاتف الطالب / ولي الأمر (واتساب) <span class="text-rose-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <i class="fa-solid fa-phone absolute right-3.5 top-3.5 text-slate-400"></i>
+                            <input type="tel" id="phoneNumber" required placeholder="0565822680" dir="ltr"
+                                class="w-full pr-10 pl-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none transition bg-white/80 text-right">
+                        </div>
+                    </div>
+
+                    <!-- Favorite Poetic Verse -->
+                    <div>
+                        <label for="favoriteVerse" class="block text-sm font-bold text-slate-700 mb-2">
+                            بيت شعري تفضله وترغب بالإلقاء به (اختياري)
+                        </label>
+                        <div class="relative">
+                            <i class="fa-solid fa-quote-right absolute right-3.5 top-3.5 text-slate-400"></i>
+                            <textarea id="favoriteVerse" rows="2" placeholder="الخَيلُ وَاللَيلُ وَالبَيداءُ تَعرِفُني... وَالسَيفُ وَالرُمحُ وَالقِرطاسُ وَالقَلَمُ"
+                                class="w-full pr-10 pl-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 outline-none transition bg-white/80 font-amiri text-lg"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-emerald-700 to-emerald-800 hover:from-emerald-800 hover:to-emerald-900 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transform active:scale-95 transition duration-200 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-paper-plane"></i> إرسال طلب التسجيل والحصول على البطاقة
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- TAB 2: GOALS & INFO -->
+        <section id="content-info" class="tab-content hidden">
+            <div class="glass-card rounded-2xl p-6 md:p-8 shadow-xl border border-slate-100">
+                <h3 class="font-amiri text-3xl font-bold text-emerald-900 border-b border-slate-200 pb-3 mb-6">🎯 أهداف مسابقة المساجلات الشعرية</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="p-4 bg-emerald-50/60 rounded-xl border border-emerald-100 flex items-start gap-3">
+                        <div class="p-3 bg-emerald-700 text-white rounded-lg shadow-sm">
+                            <i class="fa-solid fa-landmark text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-emerald-900 mb-1">إحياء التراث الأدبي</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">غرس حب الشعر العربي والأصالة اللغوية في نفوس الطلبة وتعزيز الاعتزاز بالهوية.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-amber-50/60 rounded-xl border border-amber-100 flex items-start gap-3">
+                        <div class="p-3 bg-amber-600 text-white rounded-lg shadow-sm">
+                            <i class="fa-solid fa-microphone text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-amber-900 mb-1">تنمية مهارات الإلقاء</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">التدريب على الخطابة ومخارج الحروف الصحيحة والتنغيم الصوتي البلاغي.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-emerald-50/60 rounded-xl border border-emerald-100 flex items-start gap-3">
+                        <div class="p-3 bg-emerald-700 text-white rounded-lg shadow-sm">
+                            <i class="fa-solid fa-bolt text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-emerald-900 mb-1">تعزيز سرعة البديهة</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">تنمية قوة الحفظ والقدرة على الاستحضار الفوري للأبيات الشعرية بدقة.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-amber-50/60 rounded-xl border border-amber-100 flex items-start gap-3">
+                        <div class="p-3 bg-amber-600 text-white rounded-lg shadow-sm">
+                            <i class="fa-solid fa-award text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-amber-900 mb-1">بناء الثقة والجوائز</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">تطوير مواجهة الجمهور وتكريم المراكز الأولى بجوائز قيمة وشهادات للجميع.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white p-6 rounded-xl shadow-md">
+                    <h4 class="font-amiri text-xl font-bold text-amber-300 mb-2">🏆 الجوائز والتكريم</h4>
+                    <ul class="space-y-2 text-sm text-emerald-100">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-trophy text-amber-400"></i> جوائز مالية وعينية قيمة للمراكز الأولى في المسابقة.</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-certificate text-amber-400"></i> شهادات تقدير متميزة معتمدة لجميع الطلاب المشاركين.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: CONTACTS -->
+        <section id="content-contacts" class="tab-content hidden">
+            <div class="glass-card rounded-2xl p-6 md:p-8 shadow-xl border border-slate-100 text-center">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h3 class="font-amiri text-2xl font-bold text-emerald-900 mb-2">التواصل والاستفسار Direct Contact</h3>
+                <p class="text-slate-600 text-sm mb-6 max-w-md mx-auto">يمكنكم التواصل المباشر مع المسؤولة عن المسابقة للرد على جميع الاستفسارات ومتابعة تسجيلكم.</p>
+
+                <div class="max-w-sm mx-auto space-y-4">
+                    <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-sm">
+                        <p class="text-xs text-slate-500 mb-1">المسؤولة عن المسابقة</p>
+                        <p class="font-bold text-emerald-900 text-lg">الأستاذة / أسماء عطية أحمد</p>
+                    </div>
+
+                    <a href="https://wa.me/971565822680" target="_blank" class="flex items-center justify-center gap-3 p-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition shadow-md">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>تواصل عبر الواتساب: 0565822680</span>
+                    </a>
+
+                    <div class="p-3 bg-amber-50 text-amber-900 border border-amber-200 rounded-xl text-xs font-semibold">
+                        <i class="fa-solid fa-circle-info"></i> تحت إشراف رئيس قسم اللغة العربية: الأستاذ / عبد اللطيف
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL FOR SUCCESS / TICKET GENERATION -->
+        <div id="successModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+            <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative animate-fade-in border-4 border-amber-400">
+                
+                <button onclick="closeModal()" class="absolute top-3 left-3 w-8 h-8 bg-slate-100 text-slate-500 rounded-full flex items-center justify-center hover:bg-rose-500 hover:text-white transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="text-center mb-4">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2 text-2xl">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3 class="font-amiri text-2xl font-bold text-emerald-950">تم التسجيل بنجاح!</h3>
+                    <p class="text-xs text-slate-500">نرحب بك في فرسان المساجلات الشعرية بمدرسة ابن خلدون العلمية</p>
+                </div>
+
+                <!-- TICKET CARD DESIGN -->
+                <div id="ticketCard" class="bg-gradient-to-br from-emerald-900 via-emerald-800 to-slate-900 text-white rounded-xl p-5 border-2 border-amber-400 relative overflow-hidden shadow-inner my-4">
+                    <!-- Decorative Corner Pattern -->
+                    <div class="absolute -top-6 -right-6 w-16 h-16 bg-amber-400/20 rounded-full"></div>
+                    <div class="absolute -bottom-6 -left-6 w-16 h-16 bg-amber-400/20 rounded-full"></div>
+
+                    <div class="flex items-center justify-between border-b border-amber-400/40 pb-3 mb-3">
+                        <div class="text-right">
+                            <p class="text-[10px] text-amber-300 font-bold uppercase">مدرسة ابن خلدون العلمية</p>
+                            <p class="font-amiri font-bold text-sm text-white">بطاقة فرسان المساجلة</p>
+                        </div>
+                        <i class="fa-solid fa-feather-pointed text-amber-400 text-2xl"></i>
+                    </div>
+
+                    <div class="space-y-2 text-right">
+                        <div>
+                            <span class="text-[10px] text-emerald-200 block">اسم المشارك:</span>
+                            <span id="ticketName" class="font-bold text-amber-200 text-base"></span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div>
+                                <span class="text-[10px] text-emerald-200 block">المرحلة:</span>
+                                <span id="ticketGrade" class="font-semibold text-white"></span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-emerald-200 block">الصف:</span>
+                                <span id="ticketClass" class="font-semibold text-white"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-emerald-200 block">رقم الكود:</span>
+                            <span id="ticketCode" class="font-mono text-amber-400 text-xs tracking-wider"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-2 border-t border-amber-400/30 flex justify-between items-center text-[10px] text-emerald-200">
+                        <span>إشراف: أ. عبد اللطيف</span>
+                        <span>مُسؤولة المسابقة: أ. أسماء</span>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 mt-4">
+                    <button onclick="window.print()" class="flex-1 py-2.5 bg-slate-800 hover:bg-slate-900 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-print"></i> طباعة البطاقة
+                    </button>
+                    <button onclick="closeModal()" class="flex-1 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold text-sm">
+                        إغلاق
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-4 border-t border-slate-800 text-xs">
+        <div class="max-w-4xl mx-auto px-4">
+            <p>جميع الحقوق محفوظة © مدرسة ابن خلدون العلمية - قسم اللغة العربية</p>
+            <p class="text-slate-500 mt-1">المسؤولة عن المسابقة: أ. أسماء عطية أحمد | رئيس القسم: أ. عبد اللطيف</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab Switch Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-emerald-700', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-700');
+            });
+
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.remove('bg-white', 'text-slate-700');
+            activeBtn.classList.add('bg-emerald-700', 'text-white');
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('studentName').value;
+            const grade = document.getElementById('studentGrade').value;
+            const classRoom = document.getElementById('classRoom').value;
+            const phone = document.getElementById('phoneNumber').value;
+
+            // Generate Random Registration Code
+            const randomCode = 'IK-' + Math.floor(100000 + Math.random() * 900000);
+
+            // Set Ticket Values
+            document.getElementById('ticketName').innerText = name;
+            document.getElementById('ticketGrade').innerText = grade;
+            document.getElementById('ticketClass').innerText = classRoom;
+            document.getElementById('ticketCode').innerText = randomCode;
+
+            // Show Modal
+            document.getElementById('successModal').classList.remove('hidden');
+
+            // Reset Form
+            document.getElementById('registrationForm').reset();
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
